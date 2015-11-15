@@ -18,13 +18,16 @@ public class Inversions {
 		long count = 0;
 		int[] outarr = new int[inarr.length];
 		
-		for(int i = lo, lb = lo, hb = mid; i < hi; i++) {
-			if (hb >= hi || lb < mid && inarr[lb] <= inarr[hb]) {
-				outarr[i] = inarr[lb++];
+		int lo2 = lo;
+		int mid2 = mid;
+		
+		for(int i = lo; i < hi; i++) {
+			if (mid2 >= hi || lo2 < mid && inarr[lo2] <= inarr[mid2]) {
+				outarr[i] = inarr[lo2++];
 			}
 			else {
-				count = count + (mid - lb);
-				outarr[i] = inarr[hb++];
+				count = count + (mid - lo2);
+				outarr[i] = inarr[mid2++];
 			}
 		}
 		
