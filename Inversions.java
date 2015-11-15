@@ -8,9 +8,12 @@ public class Inversions {
 			return 0;
 		}
 		int mid = (lo + hi)/2;
+		//recursive calls
 		long x = sortAndCount(inarr, lo, mid);
 		long y = sortAndCount(inarr, mid, hi);
+		//merge call
 		long z = sortAndMerge(inarr, lo, mid, hi);
+		//return inversion count
 		return x+y+z;
 	}
 	
@@ -18,14 +21,17 @@ public class Inversions {
 		long count = 0;
 		int[] outarr = new int[inarr.length];
 		
+		//keeping track of positions in array
 		int lo2 = lo;
 		int mid2 = mid;
 		
 		for(int i = lo; i < hi; i++) {
+			//copy to output array
 			if (mid2 >= hi || lo2 < mid && inarr[lo2] <= inarr[mid2]) {
 				outarr[i] = inarr[lo2++];
 			}
 			else {
+				//increment count and copy to output array
 				count = count + (mid - lo2);
 				outarr[i] = inarr[mid2++];
 			}
